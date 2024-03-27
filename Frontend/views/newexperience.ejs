@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            fieldset textarea.Interview_Exp {
+                width: 200%;
+                height: 450px; /* Adjust the height as needed */
+                box-sizing: border-box;
+                resize: vertical; /* Allow vertical resizing */
+            }
+        </style>
+
+        <!-- Bootstrap core CSS -->
+        <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+        <!-- Additional CSS Files -->
+        <link rel="stylesheet" href="/css/fontawesome.css" />
+        <link rel="stylesheet" href="/css/templatemo-woox-travel.css" />
+        <link rel="stylesheet" href="/css/owl.css" />
+        <link rel="stylesheet" href="/css/animate.css" />
+        <link
+            rel="stylesheet"
+            href="https://unpkg.com/swiper@7/swiper-bundle.min.css"
+        />
+        <!--
+
+TemplateMo 580 Woox Travel
+
+https://templatemo.com/tm-580-woox-travel
+
+-->
+    </head>
+
+    <body>
+        <!-- ***** Preloader Start ***** -->
+        <div id="js-preloader" class="js-preloader">
+            <div class="preloader-inner">
+                <span class="dot"></span>
+                <div class="dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+        <!-- ***** Preloader End ***** -->
+
+        <!-- ***** Header Area Start ***** -->
+        <header class="header-area header-sticky">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <nav class="main-nav">
+                            <!-- ***** Menu Start ***** -->
+                            <ul class="nav">
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/about">About</a></li>
+                                <li>
+                                    <a href="/newexperience" class="active"
+                                        >New Experience</a
+                                    >
+                                </li>
+                                <li><a href="/problems">Problems</a></li>
+                                <li><a href="#">Logout</a></li>
+                            </ul>
+                            <a class="menu-trigger">
+                                <span>Menu</span>
+                            </a>
+                            <!-- ***** Menu End ***** -->
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- ***** Header Area End ***** -->
+
+        <div class="reservation-form">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12"></div>
+                    <div class="col-lg-12">
+                        <form
+                            id="reservation-form"
+                            name="gs"
+                            method="POST"
+                            role="search"
+                            action="/newExp"
+                        >
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h4>
+                                        Enter Your
+                                        <em>Interview Experience</em> Here
+                                    </h4>
+                                </div>
+                                <div class="col-lg-6">
+                                    <fieldset>
+                                        <label for="Name" class="form-label">
+                                            Name</label
+                                        >
+                                        <input
+                                            type="text"
+                                            name="Name"
+                                            class="Name"
+                                            placeholder="Ex. Vijay Sethupathi"
+                                            autocomplete="on"
+                                            required
+                                        />
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <fieldset>
+                                        <label for="RegNo" class="form-label">
+                                            RegNo</label
+                                        >
+                                        <input
+                                            type="text"
+                                            name="RegNo"
+                                            class="RegNo"
+                                            autocomplete="on"
+                                            required
+                                        />
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <fieldset>
+                                        <label for="Number" class="form-label">
+                                            Phone Number</label
+                                        >
+                                        <input
+                                            type="text"
+                                            name="Number"
+                                            class="Number"
+                                            placeholder="Ex. +91 xxxxxxxxxx"
+                                            autocomplete="on"
+                                            required
+                                        />
+                                    </fieldset>
+                                </div>
+                                <div class="col-lg-6">
+                                    <fieldset>
+                                        <label
+                                            for="CompanyName"
+                                            class="form-label"
+                                        >
+                                            Company</label
+                                        >
+                                        <input
+                                            type="text"
+                                            name="CompanyName"
+                                            class="CompanyName"
+                                            placeholder="Ex. Amazon"
+                                            autocomplete="on"
+                                            required
+                                        />
+                                    </fieldset>
+                                </div>
+                                <div class="col-lg-12">
+                                    <fieldset>
+                                        <label for="Type" class="form-label"
+                                            >Job Type</label
+                                        >
+                                        <select
+                                            name="Type"
+                                            class="form-select"
+                                            aria-label="Default select example"
+                                            id="Type"
+                                            onChange="this.form.click()"
+                                        >
+                                            <option selected value="Placement">
+                                                Placement
+                                            </option>
+                                            <option value="Inernship">
+                                                Inernship
+                                            </option>
+                                        </select>
+                                    </fieldset>
+                                </div>
+                                <div class="col-lg-6">
+                                    <fieldset>
+                                        <label for="Role" class="form-label">
+                                            Role</label
+                                        >
+                                        <input
+                                            type="text"
+                                            name="Role"
+                                            class="Role"
+                                            placeholder="Ex. Data Analyst"
+                                            autocomplete="on"
+                                            required
+                                        />
+                                    </fieldset>
+                                </div>
+                                <div class="col-lg-6">
+                                    <fieldset>
+                                        <label for="Package" class="form-label">
+                                            Package</label
+                                        >
+                                        <input
+                                            type="text"
+                                            name="Package"
+                                            class="Package"
+                                            placeholder="Ex. 25 LPA"
+                                            autocomplete="on"
+                                            required
+                                        />
+                                    </fieldset>
+                                </div>
+                                <br />
+                                <div class="col-lg-12">
+                                    <fieldset>
+                                        <label for="Year" class="form-label"
+                                            >Year</label
+                                        >
+                                        <select
+                                            name="Year"
+                                            class="form-select"
+                                            aria-label="Default select example"
+                                            id="Year"
+                                            onChange="this.form.click()"
+                                        >
+                                            <option selected value="2023">
+                                                2023
+                                            </option>
+                                            <option value="2022">2022</option>
+                                            <option value="2021">2021</option>
+                                            <option value="2020">2020</option>
+                                            <option value="2019">2019</option>
+                                        </select>
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <fieldset>
+                                        <label
+                                            for="Interview_Exp"
+                                            class="form-label"
+                                        >
+                                            Interview Experience </label
+                                        ><br />
+                                        <textarea
+                                            name="Interview_Exp"
+                                            class="Interview_Exp"
+                                            placeholder="Write about your interview experience in detail here"
+                                            rows="10"
+                                            autocomplete="on"
+                                            required
+                                        ></textarea>
+                                    </fieldset>
+                                </div>
+
+                                <br />
+                                <div class="col-lg-12">
+                                    <fieldset>
+                                        <button class="main-button">
+                                            SUBMIT
+                                        </button>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p>
+                            Copyright ©
+                            <a href="#">Interview Insight Hub</a> All rights
+                            reserved.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Scripts -->
+        <!-- Bootstrap core JavaScript -->
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+        <script src="/js/isotope.min.js"></script>
+        <script src="/js/owl-carousel.js"></script>
+        <script src="/js/wow.js"></script>
+        <script src="/js/tabs.js"></script>
+        <script src="/js/popup.js"></script>
+        <script src="/js/custom.js"></script>
+
+        <script>
+            $(".option").click(function () {
+                $(".option").removeClass("active");
+                $(this).addClass("active");
+            });
+        </script>
+    </body>
+</html>
