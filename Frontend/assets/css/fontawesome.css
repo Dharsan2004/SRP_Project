@@ -4707,10 +4707,26 @@ readers do not read off random characters that represent icons */
 
 .fa-thumbs-down::before {
   content: "\f165"; }
-
-.fa-thumbs-up::before {
-  content: "\f164"; }
-
+  .thumbs-up-btn {
+    padding: 2px 5px;
+    background-color: #22b3c1;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 3px;
+    transition: background-color 0.3s ease;
+  }
+  .thumbs-up-btn:hover {
+    background-color: #84e5f9;
+  }
+  .thumbs-up-btn .fa-thumbs-up::before {
+    content: "\f164";
+    margin-right: 5px;
+  }
+  .thumbs-up-btn span {
+    font-size: 4px; /* Adjust the font size as needed */
+  }
 .fa-thumbtack::before {
   content: "\f08d"; }
 
