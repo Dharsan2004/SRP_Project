@@ -201,35 +201,40 @@ https://templatemo.com/tm-580-woox-travel
                     </div>
                 </div>
                 <div class="row">
+                    <% Interviews.forEach(interview => { %>
+
                     <div class="col-lg-8">
                         <div class="items">
                             <div class="row">
-                                <% Interviews.forEach(interview => { %>
+                                <div class="col-lg-12">
+                                    <div class="item">
+                                        <div class="row">
+                                            <div class="col-lg-8 col-sm-7">
+                                                <div class="right-content">
+                                                    <a href="<%= interview.problemLink %>"><%= interview.problemLink %></a>
 
-                                <a href="<%= interview.problemLink %>"><%= interview.problemLink %></a>
-
-                                <% }); %>
+                                                    <ul class="info">
+                                                        <li>
+                                                            <button class="thumbs-up-btn"><i class="fa fa-thumbs-up"></i></button>
+                                                            <%= interview.upvoted %> Upvotes
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
+
+                    <% }); %>
                 </div>
             </div>
         </div>
         <div><br /></div>
 
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <p>
-                            Copyright ©
-                            <a href="#">Interview Insight Hub</a> All rights
-                            reserved.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </footer>
+    
 
         <!-- Scripts -->
         <!-- Bootstrap core JavaScript -->

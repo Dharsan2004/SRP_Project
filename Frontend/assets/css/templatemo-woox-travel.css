@@ -1285,7 +1285,7 @@ About Page Style
 
 .about-main-content .content {
     border-radius: 23px;
-    text-align: center;
+    text-align: justify;
     padding: 120px 60px;
     position: relative;
     overflow: hidden;
@@ -1311,6 +1311,7 @@ About Page Style
 
 .about-main-content .content h4 {
     color: #fff;
+    
     position: relative;
     z-index: 2;
     font-size: 20px;
