@@ -147,6 +147,34 @@ app.get("/InterviewType/:type", async (req, res) => {
         res.status(500).send("Internal server error");
     }
 });
+//InterviewPackage
+
+app.get("/InterviewPackage/:pack", async (req, res) => {
+    const packageType = req.params.pack;
+    let companies;
+
+    try {
+        if (packageType == "less10") {
+            // Find interviews with Package less than 10
+            companies = await InterviewModel.find({ Package: { $lt: 10 } });
+        } else if (packageType == "midPack") {
+            // Find interviews with Package between 10 and 20
+            companies = await InterviewModel.find({
+                Package: { $gte: 10, $lte: 15 },
+            });
+        } else {
+            // Find interviews with Package greater than 20
+            companies = await InterviewModel.find({ Package: { $gt: 15 } });
+        }
+
+        // Render the "index" view with the filtered interviews data
+        res.render("index", { Interviews: companies });
+    } catch (error) {
+        // Handle any errors that occur during the query or rendering process
+        console.error("Error fetching interviews:", error);
+        res.status(500).send("Internal server error");
+    }
+});
 
 app.get("/upvote/interviews/:regNo", async (req, res) => {
     let regNumber = req.params.regNo;

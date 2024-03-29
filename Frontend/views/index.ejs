@@ -253,6 +253,42 @@
                                     );
                             </script>
                         </li>
+
+                        <li>
+                            Package <i class="fas fa-graduation-cap"></i>
+
+                            <form id="filterPackageForm">
+                                <label for="PackageFilter"
+                                    >Filter by Package:</label
+                                >
+                                <select id="PackageFilter">
+                                    <option value="less10">Below 10 LPA</option>
+                                    <option value="midPack">10 - 15 LPA</option>
+                                    <option value="dreamPack">Above LPA</option>
+                                </select>
+                                <button type="submit">Filter</button>
+                            </form>
+
+                            <script>
+                                document
+                                    .getElementById("filterPackageForm")
+                                    .addEventListener(
+                                        "submit",
+                                        function (event) {
+                                            event.preventDefault(); // Prevent default form submission
+                                            let Selectedpackage =
+                                                document.getElementById(
+                                                    "PackageFilter"
+                                                ).value;
+
+                                            this.action = `http://localhost:8000/InterviewPackage/${Selectedpackage}`;
+                                            //alert(this.action);
+                                            // Submit the form
+                                            this.submit();
+                                        }
+                                    );
+                            </script>
+                        </li>
                     </ul>
                 </div>
                 <div class="row">
