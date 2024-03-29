@@ -100,6 +100,40 @@ app.get("/", async (req, res) => {
     res.render("index", { Interviews: interviews });
 });
 
+app.get("/companies", async (req, res) => {
+    try {
+        // Fetch all unique company names from MongoDB
+        const companies = await InterviewModel.distinct("companyName");
+
+        // Send the array of company names as a response
+        res.json({ companies });
+    } catch (error) {
+        console.error("Error fetching company names:", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+});
+
+// filer on the basis of comapany name
+app.get("/companies/:name", async (req, res) => {
+    console.log("hey " + req.params.name);
+    try {
+        let companies;
+
+        if (req.params.name == "all") {
+            companies = await InterviewModel.find();
+        } else {
+            companies = await InterviewModel.find({
+                companyName: req.params.name,
+            });
+        }
+
+        res.render("index", { Interviews: companies });
+    } catch (error) {
+        console.error("Error fetching companies:", error);
+        res.status(500).send("Internal server error");
+    }
+});
+
 app.get("/upvote/interviews/:regNo", async (req, res) => {
     let regNumber = req.params.regNo;
 
