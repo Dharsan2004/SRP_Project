@@ -218,36 +218,42 @@
                                     );
                             </script>
                         </li>
-                        <li>
-                            Department <i class="fas fa-building"></i>
-                            <ul>
-                                <li><a href="#">IT</a></li>
-                                <li><a href="#">CSE</a></li>
-                                <li><a href="#">ECE</a></li>
-                                <li><a href="#">EEE</a></li>
-                                <!-- Add more department options here -->
-                            </ul>
-                        </li>
+
                         <li>
                             Type <i class="fas fa-graduation-cap"></i>
-                            <ul>
-                                <li><a href="#">Placement</a></li>
-                                <li><a href="#">Internship</a></li>
-                                <!-- Add more category type options here -->
-                            </ul>
+
+                            <form id="filterTypeForm">
+                                <label for="TypeFilter">Filter by Type:</label>
+                                <select id="TypeFilter">
+                                    <option value="Internship">
+                                        InternShip
+                                    </option>
+                                    <option value="Placement">Placement</option>
+                                </select>
+                                <button type="submit">Filter</button>
+                            </form>
+
+                            <script>
+                                document
+                                    .getElementById("filterTypeForm")
+                                    .addEventListener(
+                                        "submit",
+                                        function (event) {
+                                            event.preventDefault(); // Prevent default form submission
+                                            let selectedType =
+                                                document.getElementById(
+                                                    "TypeFilter"
+                                                ).value;
+
+                                            this.action = `http://localhost:8000/InterviewType/${selectedType}`;
+                                            //alert(this.action);
+                                            // Submit the form
+                                            this.submit();
+                                        }
+                                    );
+                            </script>
                         </li>
                     </ul>
-
-                    <!-- Sorting options -->
-                    <div class="sorting-section">
-                        <h3>Sort</h3>
-                        <div class="sort-option">
-                            <i class="fas fa-sort-amount-up"></i>
-                            <a href="#">By Upvotes</a>
-                        </div>
-
-                        <!-- Add more sorting options with corresponding Font Awesome icons -->
-                    </div>
                 </div>
                 <div class="row">
                     <% Interviews.forEach(interview => { %>

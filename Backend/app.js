@@ -134,6 +134,20 @@ app.get("/companies/:name", async (req, res) => {
     }
 });
 
+// filer on the basis of comapany name
+app.get("/InterviewType/:type", async (req, res) => {
+    console.log("hey " + req.params.type);
+    try {
+        let companies = await InterviewModel.find({
+            JobType: req.params.type,
+        });
+        res.render("index", { Interviews: companies });
+    } catch (error) {
+        console.error("Error fetching companies:", error);
+        res.status(500).send("Internal server error");
+    }
+});
+
 app.get("/upvote/interviews/:regNo", async (req, res) => {
     let regNumber = req.params.regNo;
 
