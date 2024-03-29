@@ -6,12 +6,16 @@ const { log } = require("console");
 
 app.use(express.urlencoded({ extended: false }));
 
+// mongodb+srv://dharsansrinivasan2004:8F94zory5nlNWVVd@interviewdb.2vaivmj.mongodb.net/?retryWrites=true&w=majority&appName=InterviewDB
+const URL = "mongodb+srv://dharsansrinivasan2004:8F94zory5nlNWVVd@interviewdb.2vaivmj.mongodb.net/?retryWrites=true&w=majority&appName=InterviewDB";
 mongoClient
-    .connect("mongodb://127.0.0.1:27017/InterviewHub_Database")
+    .connect(URL)
     .then(() => {
         console.log("DB is connected");
     })
     .catch(() => {
+
+        
         console.log("DB is not connected");
     });
 
@@ -67,8 +71,9 @@ const ProblemSchema = new mongoClient.Schema({
     RegNo: {
         type: Number,
         required: true,
-    },
+    }, 
 });
+
 
 const ProblemModel = mongoClient.model("problem", ProblemSchema);
 
