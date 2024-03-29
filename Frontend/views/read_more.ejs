@@ -110,8 +110,9 @@
                                 <% 
                                 // Replace newline characters with <br> tags
                                 let contentWithLineBreaks = Details.Content.replace(/\r?\n/g, '<br>');
+                                let contentWithoutProblem = contentWithLineBreaks.replace(/#problem/g, '');
                                 %>
-                                <%- contentWithLineBreaks %>
+                                <%- contentWithoutProblem %>
 
                             </p>
 

@@ -199,17 +199,37 @@
                                             <div class="col-lg-8 col-sm-7">
                                                 <div class="right-content">
                                                     <h4>
-                                                        <%= interview.companyName %> <%=interview.JobType %>   Interview Experience <%= interview.Role %> ( <%= interview.Year%>  )
+                                                        <%=
+                                                        interview.companyName %>
+                                                        <%=interview.JobType %>
+                                                        Interview Experience <%=
+                                                        interview.Role %> ( <%=
+                                                        interview.Year%> )
                                                     </h4>
-                                                    <span><%= interview.studentName %>
+                                                    <span
+                                                        ><%=
+                                                        interview.studentName %>
                                                     </span>
                                                     <div class="main-button">
-                                                        <a href="interviews/<%= interview.RegNo %>">Read More</a>
+                                                        <a
+                                                            id="regNumber"
+                                                            href="interviews/<%= interview.RegNo %>"
+                                                            >Read More</a
+                                                        >
                                                     </div>
                                                     <ul class="info">
                                                         <li>
-                                                            <button class="thumbs-up-btn"><i class="fa fa-thumbs-up"></i></button>
-                                                            <%= interview.upvoted %> Upvotes
+                                                            <button
+                                                                class="thumbs-up-btn"
+                                                                onclick="upvoteInterview('<%= interview.RegNo  %>')"
+                                                            >
+                                                                <i
+                                                                    class="fa fa-thumbs-up"
+                                                                ></i>
+                                                            </button>
+                                                            <%=
+                                                            interview.upvoted %>
+                                                            Upvotes
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -227,12 +247,11 @@
         </div>
         <div><br /></div>
 
-
         <!-- Scripts -->
         <!-- Bootstrap core JavaScript -->
         <script src="/vendor/jquery/jquery.min.js"></script>
         <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
-
+        <script src="/js/frontendScript.js"></script>
         <script src="/js/isotope.min.js"></script>
         <script src="/js/owl-carousel.js"></script>
         <script src="/js/wow.js"></script>

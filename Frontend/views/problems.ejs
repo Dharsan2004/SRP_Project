@@ -211,12 +211,26 @@ https://templatemo.com/tm-580-woox-travel
                                         <div class="row">
                                             <div class="col-lg-8 col-sm-7">
                                                 <div class="right-content">
-                                                    <a href="<%= interview.problemLink %>"><%= interview.problemLink %></a>
+                                                    <a
+                                                        href="<%= interview.problemLink %>"
+                                                        ><%=
+                                                        interview.problemLink
+                                                        %></a
+                                                    >
 
                                                     <ul class="info">
                                                         <li>
-                                                            <button class="thumbs-up-btn"><i class="fa fa-thumbs-up"></i></button>
-                                                            <%= interview.upvoted %> Upvotes
+                                                            <button
+                                                                class="thumbs-up-btn"
+                                                                onclick="upvoteProblem('<%= interview._id %>')"
+                                                            >
+                                                                <i
+                                                                    class="fa fa-thumbs-up"
+                                                                ></i>
+                                                            </button>
+                                                            <%=
+                                                            interview.upvoted %>
+                                                            Upvotes
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -234,13 +248,11 @@ https://templatemo.com/tm-580-woox-travel
         </div>
         <div><br /></div>
 
-    
-
         <!-- Scripts -->
         <!-- Bootstrap core JavaScript -->
         <script src="vendor/jquery/jquery.min.js"></script>
         <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-
+        <script src="/js/frontendScript.js"></script>
         <script src="/js/isotope.min.js"></script>
         <script src="/js/owl-carousel.js"></script>
         <script src="/js/wow.js"></script>

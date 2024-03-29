@@ -7,15 +7,14 @@ const { log } = require("console");
 app.use(express.urlencoded({ extended: false }));
 
 // mongodb+srv://dharsansrinivasan2004:8F94zory5nlNWVVd@interviewdb.2vaivmj.mongodb.net/?retryWrites=true&w=majority&appName=InterviewDB
-const URL = "mongodb+srv://dharsansrinivasan2004:8F94zory5nlNWVVd@interviewdb.2vaivmj.mongodb.net/?retryWrites=true&w=majority&appName=InterviewDB";
+const URL =
+    "mongodb+srv://dharsansrinivasan2004:8F94zory5nlNWVVd@interviewdb.2vaivmj.mongodb.net/?retryWrites=true&w=majority&appName=InterviewDB";
 mongoClient
     .connect(URL)
     .then(() => {
         console.log("DB is connected");
     })
     .catch(() => {
-
-        
         console.log("DB is not connected");
     });
 
@@ -71,9 +70,15 @@ const ProblemSchema = new mongoClient.Schema({
     RegNo: {
         type: Number,
         required: true,
-    }, 
+    },
 });
 
+ProblemSchema.add({
+    upvoted: {
+        type: Number,
+        default: 0,
+    },
+});
 
 const ProblemModel = mongoClient.model("problem", ProblemSchema);
 
@@ -91,8 +96,41 @@ app.set("views", path.join(parentDir, "views"));
 app.set("view engine", "ejs");
 
 app.get("/", async (req, res) => {
-    const interviews = await InterviewModel.find();
+    const interviews = await InterviewModel.find().sort({ upvoted: -1 });
     res.render("index", { Interviews: interviews });
+});
+
+app.get("/upvote/interviews/:regNo", async (req, res) => {
+    let regNumber = req.params.regNo;
+
+    //console.log(regNumber);
+
+    const interview = await InterviewModel.findOne({ RegNo: regNumber });
+
+    if (!interview) {
+        return res.status(404).json({ message: "Interview not found" });
+    }
+
+    interview.upvoted++;
+    await interview.save();
+
+    res.redirect("/");
+});
+
+app.get("/upvote/problem/:id", async (req, res) => {
+    let id = req.params.id;
+    const problems = await ProblemModel.findOne({ _id: id });
+
+    //console.log(id);
+
+    if (!problems) {
+        return res.status(404).json({ message: "Interview not found" });
+    }
+
+    problems.upvoted++;
+    await problems.save();
+
+    res.redirect("/problems");
 });
 
 app.get("/interviews/:regNo", async (req, res) => {
@@ -113,8 +151,19 @@ app.get("/interviews/:regNo", async (req, res) => {
 });
 
 app.get("/problems", async (req, res) => {
-    const interviews = await ProblemModel.find();
-    res.render("problems", { Interviews: interviews });
+    try {
+        // Find all interviews and sort them based on the upvote count in descending order
+        const interviews = await ProblemModel.find().sort({ upvoted: -1 });
+
+        //console.log(interviews);
+
+        // Render the "problems" view with the sorted interviews data
+        res.render("problems", { Interviews: interviews });
+    } catch (error) {
+        // Handle any errors that occur during the query or rendering process
+        console.error("Error fetching interviews:", error);
+        res.status(500).send("Internal server error");
+    }
 });
 app.get("/newexperience", (req, res) => {
     res.render("newexperience");
