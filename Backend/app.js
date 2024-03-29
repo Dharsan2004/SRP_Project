@@ -142,7 +142,7 @@ app.get("/companies/problems/:name", async (req, res) => {
 
 // filer on the basis of comapany name
 app.get("/companies/:name", async (req, res) => {
-    console.log("hey " + req.params.name);
+    //console.log("hey " + req.params.name);
     try {
         let companies;
 
@@ -163,7 +163,7 @@ app.get("/companies/:name", async (req, res) => {
 
 // filer on the basis of comapany name
 app.get("/InterviewType/:type", async (req, res) => {
-    console.log("hey " + req.params.type);
+    //console.log("hey " + req.params.type);
     try {
         let companies = await InterviewModel.find({
             JobType: req.params.type,
