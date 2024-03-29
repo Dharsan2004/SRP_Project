@@ -24,13 +24,24 @@
             rel="stylesheet"
             href="https://unpkg.com/swiper@7/swiper-bundle.min.css"
         />
-        <!--
 
-TemplateMo 580 Woox Travel
+        <style>
+            /* Apply flexbox to the nav element */
+            .nav {
+                display: flex;
+                justify-content: space-between; /* Adjust as needed */
+                align-items: center; /* Optional: Align items vertically */
+                list-style-type: none; /* Remove default list styles */
+                padding: 0; /* Remove default padding */
+            }
 
-https://templatemo.com/tm-580-woox-travel
+            /* Style individual nav items */
+            .nav li {
+                margin: 0 10px; /* Adjust margin as needed */
+            }
 
--->
+        </style>
+
     </head>
 
     <body>
@@ -59,9 +70,13 @@ https://templatemo.com/tm-580-woox-travel
                             <!-- ***** Menu Start ***** -->
                             <ul class="nav">
                                 <li><a href="/">Home</a></li>
-                                <li><a href="/about">About</a></li>
-                                <li><a href="/problems">New Experience</a></li>
-                                <li><a href="/newexperience">Problems</a></li>
+                                <li>
+                                    <a href="/about" class="active">About</a>
+                                </li>
+                                <li>
+                                    <a href="/newexperience">New Experience</a>
+                                </li>
+                                <li><a href="/problems">Problems</a></li>
                                 <li><a href="#">Logout</a></li>
                             </ul>
                             <a class="menu-trigger">
@@ -72,8 +87,7 @@ https://templatemo.com/tm-580-woox-travel
                     </div>
                 </div>
             </div>
-        </header>
-        <!-- ***** Header Area End ***** -->
+        </header> <!-- ***** Header Area End ***** -->
 
         <!-- ***** Main Banner Area Start ***** -->
         <div class="about-main-content">
@@ -112,28 +126,12 @@ https://templatemo.com/tm-580-woox-travel
         </div>
  
 
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <p>
-                            Copyright ©
-                            <a href="#">Interview Insight Hub</a> All rights
-                            reserved. <br /><a
-                                href=""
-                                target="_blank"
-                                title="free CSS templates"
-                            ></a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </footer>
+         
 
         <!-- Scripts -->
         <!-- Bootstrap core JavaScript -->
-        <script src="vendor/jquery/jquery.min.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+        <script src="/vendor/jquery/jquery.min.js"></script>
+        <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
 
         <script src="/js/isotope.min.js"></script>
         <script src="/js/owl-carousel.js"></script>
