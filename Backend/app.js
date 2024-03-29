@@ -79,6 +79,12 @@ ProblemSchema.add({
         default: 0,
     },
 });
+ProblemSchema.add({
+    companyName: {
+        type: String,
+        required: true,
+    },
+});
 
 const ProblemModel = mongoClient.model("problem", ProblemSchema);
 
@@ -110,6 +116,27 @@ app.get("/companies", async (req, res) => {
     } catch (error) {
         console.error("Error fetching company names:", error);
         res.status(500).json({ message: "Internal server error" });
+    }
+});
+//companies/problems
+app.get("/companies/problems/:name", async (req, res) => {
+    console.log("hey " + req.params.name);
+
+    try {
+        let companies;
+
+        if (req.params.name == "all") {
+            companies = await ProblemModel.find();
+        } else {
+            companies = await ProblemModel.find({
+                companyName: req.params.name,
+            });
+        }
+
+        res.render("problems", { Interviews: companies });
+    } catch (error) {
+        console.error("Error fetching companies:", error);
+        res.status(500).send("Internal server error");
     }
 });
 
@@ -289,6 +316,7 @@ app.post("/newExp", async (req, res) => {
             const pp = await ProblemModel.create({
                 problemLink: link,
                 RegNo: req.body.RegNo,
+                companyName: req.body.CompanyName,
             });
 
             await pp.save();

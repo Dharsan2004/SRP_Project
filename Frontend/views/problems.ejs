@@ -64,24 +64,18 @@
             }
         </style>
         <!-- Bootstrap core CSS -->
-        <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
         <!-- Additional CSS Files -->
         <link rel="stylesheet" href="/css/fontawesome.css" />
         <link rel="stylesheet" href="/css/templatemo-woox-travel.css" />
         <link rel="stylesheet" href="/css/owl.css" />
         <link rel="stylesheet" href="/css/animate.css" />
+
         <link
             rel="stylesheet"
             href="https://unpkg.com/swiper@7/swiper-bundle.min.css"
         />
-        <!--
-
-TemplateMo 580 Woox Travel
-
-https://templatemo.com/tm-580-woox-travel
-
--->
     </head>
 
     <body>
@@ -111,7 +105,9 @@ https://templatemo.com/tm-580-woox-travel
                             <!-- ***** Logo End ***** -->
                             <!-- ***** Menu Start ***** -->
                             <ul class="nav">
-                                <li><a href="/">Home</a></li>
+                                <li>
+                                    <a href="/">Home</a>
+                                </li>
                                 <li><a href="/about">About</a></li>
                                 <li>
                                     <a href="/newexperience">New Experience</a>
@@ -137,68 +133,82 @@ https://templatemo.com/tm-580-woox-travel
 
         <div class="visit-country">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-5">
-                        <div class="section-heading">
-                            <h2>PROBLEMS</h2>
-                        </div>
-                    </div>
-                </div>
                 <div class="sidebar">
                     <h3>Filter <i class="fas fa-filter"></i></h3>
                     <br />
                     <ul class="category-list">
                         <li>
                             Company <i class="fas fa-tv"></i>
-                            <ul>
-                                <li><a href="#">Arcesium</a></li>
-                                <li><a href="#">Amazon</a></li>
-                                <li><a href="#">Facebook</a></li>
-                                <li><a href="#">Wells Fargo</a></li>
-                                <li><a href="#">SAP Labs</a></li>
-                                <!-- Add more company options here -->
-                            </ul>
-                        </li>
-                        <br />
-                        <li>
-                            Topics <i class="fas fa-book"></i>
-                            <ul>
-                                <li>
-                                    <a href="#"
-                                        >Data Structures and Algorithms</a
-                                    >
-                                </li>
-                                <li><a href="#">Computer Networks</a></li>
-                                <li><a href="#">DBMS</a></li>
-                                <li><a href="#">Operating Systems</a></li>
-                                <!-- Add more department options here -->
-                            </ul>
-                        </li>
-                        <br />
-                        <li>
-                            Type <i class="fas fa-graduation-cap"></i>
-                            <ul>
-                                <li><a href="#">Placement</a></li>
-                                <li><a href="#">Internship</a></li>
-                                <!-- Add more category type options here -->
-                            </ul>
+
+                            <form id="filterForm">
+                                <label for="companyFilter"
+                                    >Filter by Company:</label
+                                >
+                                <select id="companyFilter">
+                                    <option value="">All Companies</option>
+                                    <!-- Default option to show all -->
+                                </select>
+                                <button type="submit">Filter</button>
+                            </form>
+
+                            <script>
+                                // Function to fetch company names and populate the dropdown menu
+                                async function fetchCompanies() {
+                                    try {
+                                        const response = await fetch(
+                                            "/companies"
+                                        );
+                                        const data = await response.json();
+
+                                        const companyDropdown =
+                                            document.getElementById(
+                                                "companyFilter"
+                                            );
+                                        data.companies.forEach((company) => {
+                                            const option =
+                                                document.createElement(
+                                                    "option"
+                                                );
+                                            option.value = company;
+                                            option.textContent = company;
+                                            companyDropdown.appendChild(option);
+                                        });
+                                    } catch (error) {
+                                        console.error(
+                                            "Error fetching company names:",
+                                            error
+                                        );
+                                    }
+                                }
+
+                                // Call fetchCompanies() to populate the dropdown menu when the page loads
+                                fetchCompanies();
+
+                                // Event listener for form submission
+                                document
+                                    .getElementById("filterForm")
+                                    .addEventListener(
+                                        "submit",
+                                        function (event) {
+                                            event.preventDefault(); // Prevent default form submission
+                                            let selectedCompany =
+                                                document.getElementById(
+                                                    "companyFilter"
+                                                ).value;
+
+                                            if (selectedCompany.length == 0) {
+                                                selectedCompany = "all";
+                                            }
+
+                                            this.action = `http://localhost:8000/companies/problems/${selectedCompany}`;
+                                            //alert(this.action);
+                                            // Submit the form
+                                            this.submit();
+                                        }
+                                    );
+                            </script>
                         </li>
                     </ul>
-                    <br />
-                    <!-- Sorting options -->
-                    <div class="sorting-section">
-                        <h3>Sort</h3>
-                        <div class="sort-option">
-                            <i class="fas fa-sort-amount-up"></i>
-                            <a href="#">Easy to Difficult</a>
-                        </div>
-                        <div class="sort-option">
-                            <i class="fas fa-sort-amount-down"></i>
-                            <a href="#">High to Low Upvotes</a>
-                        </div>
-
-                        <!-- Add more sorting options with corresponding Font Awesome icons -->
-                    </div>
                 </div>
                 <div class="row">
                     <% Interviews.forEach(interview => { %>
@@ -211,18 +221,13 @@ https://templatemo.com/tm-580-woox-travel
                                         <div class="row">
                                             <div class="col-lg-8 col-sm-7">
                                                 <div class="right-content">
-                                                    <a
-                                                        href="<%= interview.problemLink %>"
-                                                        ><%=
-                                                        interview.problemLink
-                                                        %></a
-                                                    >
+                                                    <a href='<%= interview.problemLink %>'><%= interview.problemLink %></a>
 
                                                     <ul class="info">
                                                         <li>
                                                             <button
                                                                 class="thumbs-up-btn"
-                                                                onclick="upvoteProblem('<%= interview._id %>')"
+                                                                onclick="upvoteProblem('<%= interview._id  %>')"
                                                             >
                                                                 <i
                                                                     class="fa fa-thumbs-up"
@@ -250,14 +255,14 @@ https://templatemo.com/tm-580-woox-travel
 
         <!-- Scripts -->
         <!-- Bootstrap core JavaScript -->
-        <script src="vendor/jquery/jquery.min.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+        <script src="/vendor/jquery/jquery.min.js"></script>
+        <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
         <script src="/js/frontendScript.js"></script>
         <script src="/js/isotope.min.js"></script>
         <script src="/js/owl-carousel.js"></script>
         <script src="/js/wow.js"></script>
         <script src="/js/tabs.js"></script>
-        <script src="/js/popup.js"></script>
+        <script src="js/popup.js"></script>
         <script src="/js/custom.js"></script>
 
         <script>
