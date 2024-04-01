@@ -1,6 +1,8 @@
 async function upvoteInterview(rN) {
     const regNo = "interviews/" + rN;
 
+    const apiURL = "https://srp-project-7b5v.onrender.com/";
+
     const URL = "http://localhost:8000/upvote/" + regNo;
 
     try {
