@@ -3,7 +3,7 @@ async function upvoteInterview(rN) {
 
     const apiURL = "https://srp-project-7b5v.onrender.com/";
 
-    const URL = "http://localhost:8000/upvote/" + regNo;
+    const URL = "https://srp-project-7b5v.onrender.com/upvote/" + regNo;
 
     try {
         const response = await fetch(URL);
@@ -19,7 +19,7 @@ async function upvoteInterview(rN) {
 }
 
 async function upvoteProblem(id) {
-    const URL = "http://localhost:8000/upvote/problem/" + id;
+    const URL = "https://srp-project-7b5v.onrender.com/upvote/problem/" + id;
 
     console.log(id);
     try {
