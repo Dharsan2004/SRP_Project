@@ -200,7 +200,7 @@
                                                 selectedCompany = "all";
                                             }
 
-                                            this.action = `http://localhost:8000/companies/problems/${selectedCompany}`;
+                                            this.action = `https://srp-project-7b5v.onrender.com/companies/problems/${selectedCompany}`;
                                             //alert(this.action);
                                             // Submit the form
                                             this.submit();
@@ -221,7 +221,12 @@
                                         <div class="row">
                                             <div class="col-lg-8 col-sm-7">
                                                 <div class="right-content">
-                                                    <a href='<%= interview.problemLink %>'><%= interview.problemLink %></a>
+                                                    <a
+                                                        href="<%= interview.problemLink %>"
+                                                        ><%=
+                                                        interview.problemLink
+                                                        %></a
+                                                    >
 
                                                     <ul class="info">
                                                         <li>
